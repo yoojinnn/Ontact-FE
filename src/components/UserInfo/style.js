@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default {
+export const S = {
   AppHeader: styled.div`
  	margin: 30px;
 

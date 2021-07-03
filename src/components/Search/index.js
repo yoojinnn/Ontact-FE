@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { useHistory } from 'react-router-dom';
-import S from './style';
+import { S } from './style';
 import { searchUser } from '../../api';
 
 const useStyles = makeStyles((theme) => ({

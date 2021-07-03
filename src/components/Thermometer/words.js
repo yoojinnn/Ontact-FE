@@ -1,4 +1,4 @@
-export default [
+export const words = [
   {
     text: '바보',
     value: 64,

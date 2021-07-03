@@ -1,67 +1,65 @@
 import styled from 'styled-components';
 
-export default {
+export const S = {
   AppHeader: styled.div`
- 	margin: 30px;
-
+    margin: 30px;
   `,
 
   h1: styled.div`
- 	font-size: 50px;
- 	color: #718ac0;
+    font-size: 50px;
+    color: #718ac0;
     font-weight: bold;
-  `,  
+  `,
 
- Information: styled.div`
- 	 text-align: center;
-      margin-bottom: 30px;
+  Information: styled.div`
+    text-align: center;
+    margin-bottom: 30px;
   `,
 
   Analyze: styled.div`
- 	 font-size: 20px;
-	 margin: 20px;
+    font-size: 20px;
+    margin: 20px;
   `,
 
   Temperature: styled.span`
- 	  color: red;
-	  font-weight: bold;
+    color: red;
+    font-weight: bold;
   `,
 
   Result: styled.span`
- 	  font-size: 18px;
+    font-size: 18px;
   `,
 
   Table: styled.div`
- 	   width: 100%;
-       text-align: -webkit-center;
+    width: 100%;
+    text-align: -webkit-center;
   `,
-  
+
   Degree: styled.tr`
- 	   text-align: left;
+    text-align: left;
   `,
 
   Warm: styled.th`
- 	  font-size: 30px;
-	   color: #f0adad;
+    font-size: 30px;
+    color: #f0adad;
   `,
 
-   Mid: styled.th`
- 	    font-size: 30px;
-		color: #404041;
-        padding: 0px 80px;
+  Mid: styled.th`
+    font-size: 30px;
+    color: #404041;
+    padding: 0px 80px;
   `,
 
-    Cold: styled.th`
- 	 	font-size: 30px;
-    	color: #718ac0;
+  Cold: styled.th`
+    font-size: 30px;
+    color: #718ac0;
   `,
 
-    MidTextArea: styled.td`
- 	 	padding: 0px 80px;
+  MidTextArea: styled.td`
+    padding: 0px 80px;
   `,
-  
+
   textarea: styled.textarea`
- 	 	resize: none;
-  `
-
-}
+    resize: none;
+  `,
+};
