@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: process.env.API_ADDRESS,
+  baseURL: process.env.REACT_APP_API_ADDRESS,
 });
 
 async function searchUser(userId) {
