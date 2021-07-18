@@ -20,7 +20,12 @@ export const FooterWrapper = styled.div`
 `;
 
 function Calendar() {
-  const events = [{ title: '35°C', date: new Date() }];
+  const events = [
+    { title: '35°C', date: '2021-07-11' },
+    { title: '43°C', date: '2021-07-15' },
+    { title: '38°C', date: '2021-07-17' },
+    { title: '47°C', date: '2021-07-27' },
+  ];
 
   return (
     <StyleWrapper>

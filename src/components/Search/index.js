@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { useHistory } from 'react-router-dom';
 import { S } from './style';
-import { searchUser } from '../../api';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,8 +26,9 @@ function Search() {
   const changeHandler = ({ target }) => setUserId(target.value);
 
   const clickHandler = async () => {
-    const a = await searchUser(userId);
-    console.log(a);
+    // const a = await searchUser(userId);
+    // console.log(a);
+    localStorage.setItem('userId', userId);
     history.push('/thermometer');
   };
 

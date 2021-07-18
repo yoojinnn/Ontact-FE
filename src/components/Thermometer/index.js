@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactWordcloud from 'react-wordcloud';
 import { S } from './style';
-import { words } from './words';
+// import { words } from './words';
+import { deduplicateArray, removeOneWords } from '../../util/words';
+import { getWords } from '../../api';
+import { useEffect } from 'react';
 
 const options = {
   colors: ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b'],
   enableTooltip: true,
   deterministic: false,
   fontFamily: 'sans-serif',
-  fontSizes: [5, 60],
+  fontSizes: [10, 100],
   padding: 1,
   rotations: 3,
   rotationAngles: [0, 90],
@@ -18,6 +21,16 @@ const options = {
 };
 
 function Thermometer() {
+  const [words, setWords] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getWords(localStorage.getItem('userId'));
+      setWords(removeOneWords(deduplicateArray(response.data.data)));
+    };
+    fetchData();
+  }, []);
+
   return (
     <S.AppHeader>
       <S.h1>온도계</S.h1>
