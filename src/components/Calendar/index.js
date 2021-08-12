@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 // import { render } from 'react-dom';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import styled from 'styled-components';
+import { getDates } from '../../api';
 
 export const StyleWrapper = styled.div`
   margin: 30px;
@@ -20,17 +21,20 @@ export const FooterWrapper = styled.div`
 `;
 
 function Calendar() {
-  const events = [
-    { title: '35°C', date: '2021-07-11' },
-    { title: '43°C', date: '2021-07-15' },
-    { title: '38°C', date: '2021-07-17' },
-    { title: '47°C', date: '2021-07-27' },
-  ];
+  const [dates, setDates] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getDates(localStorage.getItem('userId'));
+      setDates(response.data.data);
+    };
+    fetchData();
+  }, []);
 
   return (
     <StyleWrapper>
       <HeaderWrapper>온도 캘린더</HeaderWrapper>
-      <FullCalendar defaultView="dayGridMonth" plugins={[dayGridPlugin]} events={events} />
+      <FullCalendar defaultView="dayGridMonth" plugins={[dayGridPlugin]} events={dates} />
       <FooterWrapper>이 달의 평균 온도는 53&deg;C 입니다.</FooterWrapper>
     </StyleWrapper>
   );

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import ReactWordcloud from 'react-wordcloud';
 import { S } from './style';
-// import { words } from './words';
 import { deduplicateArray, removeOneWords } from '../../util/words';
-import { getWords } from '../../api';
+import { getWords, getDatas, getTem } from '../../api';
 import { useEffect } from 'react';
 
 const options = {
@@ -22,13 +21,27 @@ const options = {
 
 function Thermometer() {
   const [words, setWords] = useState([]);
+  const [avg, setAvg] = useState([]);
+  const [tem, setTem] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchWordsData = async () => {
       const response = await getWords(localStorage.getItem('userId'));
       setWords(removeOneWords(deduplicateArray(response.data.data)));
     };
-    fetchData();
+    fetchWordsData();
+
+    const fetchAvgData = async () => {
+      const response = await getDatas(localStorage.getItem('userId'));
+      setAvg(response.data.avg);
+    };
+    fetchAvgData();
+
+    const fetchTemData = async () => {
+      const response = await getTem(localStorage.getItem('userId'));
+      setTem(response.data);
+    };
+    fetchTemData();
   }, []);
 
   return (
@@ -36,9 +49,10 @@ function Thermometer() {
       <S.h1>온도계</S.h1>
       <S.Information>
         <S.Analyze>
-          2021년 이월의 게시글 온도는 <S.Temperature>64&deg;C</S.Temperature> 입니다.
+          최근 게시글 {avg.total_sen}개의 평균온도는{' '}
+          <S.Temperature>{avg.title__avg}&deg;C</S.Temperature> 입니다.
         </S.Analyze>
-        <S.Result>총 23개의 글 분석 결과</S.Result>
+        <S.Result>총 {avg.total_sen}개의 글 분석 결과</S.Result>
       </S.Information>
 
       <S.Table>
@@ -51,13 +65,13 @@ function Thermometer() {
             </S.Degree>
             <tr>
               <td>
-                <S.textarea cols="30" rows="10" readOnly></S.textarea>
+                <S.textarea cols="30" rows="10" value={tem.warm} readOnly></S.textarea>
               </td>
               <S.MidTextArea>
-                <S.textarea cols="30" rows="10" readOnly></S.textarea>
+                <S.textarea cols="30" rows="10" value={tem.normal} readOnly></S.textarea>
               </S.MidTextArea>
               <td>
-                <S.textarea cols="30" rows="10" readOnly></S.textarea>
+                <S.textarea cols="30" rows="10" value={tem.cold} readOnly></S.textarea>
               </td>
             </tr>
           </tbody>

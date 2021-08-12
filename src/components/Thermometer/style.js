@@ -61,5 +61,7 @@ export const S = {
 
   textarea: styled.textarea`
     resize: none;
+    border-radius: 8px;
+    border: 3px solid darkslategrey;
   `,
 };

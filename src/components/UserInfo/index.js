@@ -12,20 +12,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   large: {
-    width: theme.spacing(25),
-    height: theme.spacing(25),
+    width: theme.spacing(30),
+    height: theme.spacing(30),
   },
 }));
-
-const userInfo = {
-  twitter_id: 'SANDEUL920320',
-  name: '삼돌',
-  description: '나야~🎵',
-  user_created: '2011-04-19',
-  followers: 589340,
-  friends: 6,
-  profile_img: 'https://pbs.twimg.com/profile_images/1297847545289306113/H4xVZYcG_400x400.jpg',
-};
 
 function UserInfo() {
   const classes = useStyles();
@@ -43,22 +33,40 @@ function UserInfo() {
   return (
     <S.AppHeader>
       <S.Header>사용자 정보</S.Header>
-      <div>
-        <Avatar src={user.profile_img} alt="" className={classes.large} />
+      <div
+        style={{
+          textAlign: '-webkit-center',
+          padding: '30px',
+          margin: '10px',
+          boxShadow: '0 1px 5px rgba(0,0,0,0.5)',
+        }}
+      >
+        <Avatar
+          src={user.profile_img}
+          style={{ marginBottom: '10px' }}
+          alt=""
+          className={classes.large}
+        />
         <h2>
-          {/* <a href={result.html_url} target="no_rel">
-            {result.name}
-          </a> */}
-          {user.name}
+          <a
+            href={user.twitter_user_url}
+            style={{
+              textDecoration: 'none',
+            }}
+            target="no_rel"
+          >
+            {user.name}
+          </a>
         </h2>
+
+        <p>@{user.twitter_id}</p>
+        <p>
+          Bio:
+          <br />
+          {user.description}
+        </p>
+        <p> created at : {user.user_created}</p>
       </div>
-      <p>@{user.twitter_id}</p>
-      <p>
-        Bio:
-        <br />
-        {user.description}
-      </p>
-      <p> created at : {user.user_created}</p>
     </S.AppHeader>
   );
 }
