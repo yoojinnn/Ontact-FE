@@ -12,7 +12,8 @@ function Header({ search }) {
     >
       <S.NavLink to="/">
         <Navbar.Brand href="/home" style={{ marginLeft: '30px' }}>
-          <img src={logo} width="170" height="55" alt="Logo" />
+          {/* /<img src={logo} width="170" height="55" alt="Logo" /> */}
+          <S.h1>Ontact</S.h1>
         </Navbar.Brand>
       </S.NavLink>
       <Nav>

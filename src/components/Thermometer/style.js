@@ -64,4 +64,10 @@ export const S = {
     border-radius: 8px;
     border: 3px solid darkslategrey;
   `,
+  Spinner: styled.div`
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    /* transform: translate(-50%, -50%); */
+  `,
 };

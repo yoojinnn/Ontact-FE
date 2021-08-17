@@ -27,8 +27,6 @@ function Search({ changeSearch }) {
   const changeHandler = ({ target }) => setUserId(target.value);
 
   const clickHandler = async () => {
-    // const a = await searchUser(userId);
-    // console.log(a);
     changeSearch();
     localStorage.setItem('userId', userId);
     history.push('/thermometer');

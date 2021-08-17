@@ -18,7 +18,6 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Header search={search} />
-
         <Switch>
           <Route path="/" exact render={() => <Search changeSearch={changeSearch} />} />
           <Route path="/thermometer" component={Thermometer} />

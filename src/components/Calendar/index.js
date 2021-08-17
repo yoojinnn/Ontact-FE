@@ -35,7 +35,6 @@ function Calendar() {
     <StyleWrapper>
       <HeaderWrapper>온도 캘린더</HeaderWrapper>
       <FullCalendar defaultView="dayGridMonth" plugins={[dayGridPlugin]} events={dates} />
-      <FooterWrapper>이 달의 평균 온도는 53&deg;C 입니다.</FooterWrapper>
     </StyleWrapper>
   );
 }

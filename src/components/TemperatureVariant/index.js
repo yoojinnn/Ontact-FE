@@ -32,7 +32,7 @@ function TemperatureVariant() {
             data={[datas]}
             margin={{ top: 50, right: 110, bottom: 50, left: 100 }}
             xScale={{ type: 'point' }}
-            yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
+            yScale={{ type: 'linear', min: '10', max: '90', stacked: true, reverse: false }}
             yFormat=" >-.2f"
             axisTop={null}
             axisRight={null}
