@@ -28,11 +28,7 @@ function Search({ changeSearch }) {
 
   const changeHandler = ({ target }) => setUserId(target.value);
 
-  const clickHandler = async () => {
-    changeSearch();
-    localStorage.setItem('userId', userId);
-    history.push('/thermometer');
-
+  const getData = async() => {
     const words = await getWords(userId);
     localStorage.setItem('words', JSON.stringify(removeOneWords(deduplicateArray(words.data.avg))));
 
@@ -41,6 +37,14 @@ function Search({ changeSearch }) {
 
     const tem = await getTem(userId);
     localStorage.setItem('tem', JSON.stringify(tem.data));
+  }
+
+  const clickHandler = async () => {
+    changeSearch();
+    localStorage.setItem('userId', userId);
+    await getData();
+
+    history.push('/thermometer');
   };
 
   const keyPressHandler = () => {

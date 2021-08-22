@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ReactWordcloud from 'react-wordcloud';
 import { S } from './style';
-import { deduplicateArray, removeOneWords } from '../../util/words';
-import { getWords, getDatas, getTem } from '../../api';
+// import { deduplicateArray, removeOneWords } from '../../util/words';
+// import { getWords, getDatas, getTem } from '../../api';
 import LoadingSpinner from '../LoadingSpinner';
 
 const options = {
@@ -20,9 +20,9 @@ const options = {
 };
 
 function Thermometer() {
-  const [words, setWords] = useState([]);
-  const [avg, setAvg] = useState([]);
-  const [tem, setTem] = useState([]);
+  const [words, setWords] = useState(null);
+  const [avg, setAvg] = useState(null);
+  const [tem, setTem] = useState(null);
 
   useEffect(() => {
     setWords(JSON.parse(localStorage.getItem('words')));
@@ -54,7 +54,7 @@ function Thermometer() {
   return (
     <S.AppHeader>
       <S.h1>온도계</S.h1>
-      {words.length === 0 || avg.length === 0 || tem.length === 0 ? (
+      {(!words || !avg || !tem) ? (
         <S.Spinner>
           <LoadingSpinner></LoadingSpinner>
           <div style={{ textAlign: 'center', fontSize: '20px' }}>분석 중..</div>
