@@ -5,6 +5,8 @@ import Button from '@material-ui/core/Button';
 import { useHistory } from 'react-router-dom';
 import { S } from './style';
 import bg from '../../images/background1.png';
+import { getWords, getDatas, getTem } from '../../api';
+import { deduplicateArray, removeOneWords } from '../../util/words';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,6 +32,15 @@ function Search({ changeSearch }) {
     changeSearch();
     localStorage.setItem('userId', userId);
     history.push('/thermometer');
+
+    const words = await getWords(userId);
+    localStorage.setItem('words', JSON.stringify(removeOneWords(deduplicateArray(words.data.avg))));
+
+    const datas = await getDatas(userId);
+    localStorage.setItem('datas', JSON.stringify(datas.data.avg));
+
+    const tem = await getTem(userId);
+    localStorage.setItem('tem', JSON.stringify(tem.data));
   };
 
   const keyPressHandler = () => {

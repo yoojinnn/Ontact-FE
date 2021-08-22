@@ -35,6 +35,7 @@ function UserInfo() {
       <S.Header>사용자 정보</S.Header>
       <div
         style={{
+          fontSize: '25px',
           textAlign: '-webkit-center',
           padding: '30px',
           margin: '10px',

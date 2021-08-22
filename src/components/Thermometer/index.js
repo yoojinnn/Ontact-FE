@@ -10,7 +10,7 @@ const options = {
   enableTooltip: true,
   deterministic: false,
   fontFamily: 'sans-serif',
-  fontSizes: [10, 100],
+  fontSizes: [15, 80],
   padding: 1,
   rotations: 3,
   rotationAngles: [0, 90],
@@ -25,31 +25,39 @@ function Thermometer() {
   const [tem, setTem] = useState([]);
 
   useEffect(() => {
-    const fetchWordsData = async () => {
-      const response = await getWords(localStorage.getItem('userId'));
-      setWords(removeOneWords(deduplicateArray(response.data.data)));
-    };
-    fetchWordsData();
+    setWords(JSON.parse(localStorage.getItem('words')));
+    setAvg(JSON.parse(localStorage.getItem('datas')));
+    setTem(JSON.parse(localStorage.getItem('tem')));
+    // const isNew = localStorage.getItem('isNew');
+    // console.log(isNew);
+    // if (isNew === 'true') {
+    //   const fetchWordsData = async () => {
+    //     const response = await getWords(localStorage.getItem('userId'));
+    //     setWords(removeOneWords(deduplicateArray(response.data.data)));
+    //   };
 
-    const fetchAvgData = async () => {
-      const response = await getDatas(localStorage.getItem('userId'));
-      setAvg(response.data.avg);
-    };
-    fetchAvgData();
+    //   const fetchAvgData = async () => {
+    //     const response = await getDatas(localStorage.getItem('userId'));
+    //     setAvg(response.data.avg);
+    //   };
 
-    const fetchTemData = async () => {
-      const response = await getTem(localStorage.getItem('userId'));
-      setTem(response.data);
-    };
-    fetchTemData();
+    //   const fetchTemData = async () => {
+    //     const response = await getTem(localStorage.getItem('userId'));
+    //     setTem(response.data);
+    //   };
+    //   fetchWordsData();
+    //   fetchAvgData();
+    //   fetchTemData();
+    // }
   }, []);
 
   return (
     <S.AppHeader>
       <S.h1>온도계</S.h1>
-      {words.length === 0 || avg.length === 0 || tem.length === 0 ? ( // TODO: === 으로 바뀌어야함
+      {words.length === 0 || avg.length === 0 || tem.length === 0 ? (
         <S.Spinner>
           <LoadingSpinner></LoadingSpinner>
+          <div style={{ textAlign: 'center', fontSize: '20px' }}>분석 중..</div>
         </S.Spinner>
       ) : (
         <div>
@@ -69,11 +77,12 @@ function Thermometer() {
                   <S.Mid>中중</S.Mid>
                   <S.Cold>冷냉</S.Cold>
                 </S.Degree>
-                <tr>
+                <tr style={{ fontSize: '20px' }}>
                   <td>
                     <S.textarea
                       cols="30"
                       rows="10"
+                      fontSize="20px"
                       value={tem.warm && tem.warm.join(', ')}
                       readOnly
                     ></S.textarea>

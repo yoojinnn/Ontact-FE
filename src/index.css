@@ -1,16 +1,26 @@
+@font-face {
+  font-family: 'NanumBarunpenB';
+  src: url('./fonts/NanumBarunpenB.ttf');
+}
+@font-face {
+  font-family: 'NanumBarunpenR';
+  src: url('./fonts/NanumBarunpenR.ttf');
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'NanumBarunpenR', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif' !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
+/* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
+} */
 
 .fc-event-title-container {
+  font-size: 20px;
   text-align: center;
 }
 

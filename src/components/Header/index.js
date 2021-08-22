@@ -1,7 +1,6 @@
 import React from 'react';
 import { S } from './style';
 import { Navbar, Nav } from 'react-bootstrap';
-import logo from '../../images/logo.png';
 
 function Header({ search }) {
   return (
@@ -46,11 +45,11 @@ function Header({ search }) {
         )}
         {!search ? (
           <S.NavLink exact to="/">
-            내정보
+            사용자정보
           </S.NavLink>
         ) : (
           <S.NavLink activeClassName="selected" to="/user-info">
-            내정보
+            사용자정보
           </S.NavLink>
         )}
         <S.NavLink exact activeClassName="selected" to="/">

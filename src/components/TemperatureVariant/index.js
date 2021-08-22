@@ -1,10 +1,8 @@
 import React from 'react';
-// import Line from './line';
 import { S } from './style';
 import { getGraph } from '../../api';
 import { useState, useEffect } from 'react';
 import { ResponsiveLine } from '@nivo/line';
-// import data from './data.json';
 import { makeData } from '../../util/makeData';
 
 function TemperatureVariant() {

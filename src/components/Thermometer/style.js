@@ -17,7 +17,7 @@ export const S = {
   `,
 
   Analyze: styled.div`
-    font-size: 20px;
+    font-size: 35px;
     margin: 20px;
   `,
 
@@ -27,7 +27,7 @@ export const S = {
   `,
 
   Result: styled.span`
-    font-size: 18px;
+    font-size: 22px;
   `,
 
   Table: styled.div`
