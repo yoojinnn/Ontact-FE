@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ReactWordcloud from 'react-wordcloud';
 import { S } from './style';
-// import { deduplicateArray, removeOneWords } from '../../util/words';
-// import { getWords, getDatas, getTem } from '../../api';
+import { deduplicateArray, removeOneWords } from '../../util/words';
+import { getWords, getDatas, getTem } from '../../api';
 import LoadingSpinner from '../LoadingSpinner';
 
 const options = {
@@ -20,41 +20,34 @@ const options = {
 };
 
 function Thermometer() {
-  const [words, setWords] = useState(null);
-  const [avg, setAvg] = useState(null);
-  const [tem, setTem] = useState(null);
+  const [words, setWords] = useState([]);
+  const [avg, setAvg] = useState([]);
+  const [tem, setTem] = useState([]);
 
   useEffect(() => {
-    setWords(JSON.parse(localStorage.getItem('words')));
-    setAvg(JSON.parse(localStorage.getItem('datas')));
-    setTem(JSON.parse(localStorage.getItem('tem')));
-    // const isNew = localStorage.getItem('isNew');
-    // console.log(isNew);
-    // if (isNew === 'true') {
-    //   const fetchWordsData = async () => {
-    //     const response = await getWords(localStorage.getItem('userId'));
-    //     setWords(removeOneWords(deduplicateArray(response.data.data)));
-    //   };
+    const fetchWordsData = async () => {
+      const response = await getWords(localStorage.getItem('userId'));
+      setWords(removeOneWords(deduplicateArray(response.data.data)));
+    };
 
-    //   const fetchAvgData = async () => {
-    //     const response = await getDatas(localStorage.getItem('userId'));
-    //     setAvg(response.data.avg);
-    //   };
+    const fetchAvgData = async () => {
+      const response = await getDatas(localStorage.getItem('userId'));
+      setAvg(response.data.avg);
+    };
 
-    //   const fetchTemData = async () => {
-    //     const response = await getTem(localStorage.getItem('userId'));
-    //     setTem(response.data);
-    //   };
-    //   fetchWordsData();
-    //   fetchAvgData();
-    //   fetchTemData();
-    // }
+    const fetchTemData = async () => {
+      const response = await getTem(localStorage.getItem('userId'));
+      setTem(response.data);
+    };
+    fetchWordsData();
+    fetchAvgData();
+    fetchTemData();
   }, []);
 
   return (
     <S.AppHeader>
       <S.h1>온도계</S.h1>
-      {(!words || !avg || !tem) ? (
+      {words.length === 0 || avg.length === 0 || tem.length === 0 ? (
         <S.Spinner>
           <LoadingSpinner></LoadingSpinner>
           <div style={{ textAlign: 'center', fontSize: '20px' }}>분석 중..</div>

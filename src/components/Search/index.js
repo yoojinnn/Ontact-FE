@@ -1,12 +1,18 @@
-import { useState } from 'react';
-import TextField from '@material-ui/core/TextField';
+import React, { useState } from 'react';
+import {
+  TextField,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import { useHistory } from 'react-router-dom';
 import { S } from './style';
 import bg from '../../images/background1.png';
-import { getWords, getDatas, getTem } from '../../api';
-import { deduplicateArray, removeOneWords } from '../../util/words';
+import WarningRoundedIcon from '@material-ui/icons/WarningRounded';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,6 +24,15 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
   },
+  paper: { minWidth: '500px' },
+  title: {
+    fontSize: 30,
+    fontWeight: 'bold',
+  },
+  content: {
+    fontFamily: 'NanumBarunPenR',
+    fontSize: 20,
+  },
 }));
 
 function Search({ changeSearch }) {
@@ -25,26 +40,28 @@ function Search({ changeSearch }) {
   const classes = useStyles();
   const formStyle = { display: 'flex', justifyContent: 'center', alignItems: 'center' };
   const [userId, setUserId] = useState('');
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const changeHandler = ({ target }) => setUserId(target.value);
 
-  const getData = async() => {
-    const words = await getWords(userId);
-    localStorage.setItem('words', JSON.stringify(removeOneWords(deduplicateArray(words.data.avg))));
-
-    const datas = await getDatas(userId);
-    localStorage.setItem('datas', JSON.stringify(datas.data.avg));
-
-    const tem = await getTem(userId);
-    localStorage.setItem('tem', JSON.stringify(tem.data));
-  }
-
   const clickHandler = async () => {
-    changeSearch();
     localStorage.setItem('userId', userId);
-    await getData();
-
-    history.push('/thermometer');
+    if (userId === '') {
+      handleClickOpen();
+    } else if (userId === null) {
+      handleClickOpen();
+    } else {
+      changeSearch();
+      history.push('/thermometer');
+    }
   };
 
   const keyPressHandler = () => {
@@ -93,6 +110,37 @@ function Search({ changeSearch }) {
           </Button>
         </form>
       </div>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        classes={{ paper: classes.paper }}
+      >
+        <DialogTitle
+          id="alert-dialog-title"
+          disableTypography="true"
+          classes={{ root: classes.title }}
+        >
+          <WarningRoundedIcon style={{ fontSize: 40 }} />
+          {'경고'}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description" classes={{ root: classes.content }}>
+            아이디를 입력해주세요
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={handleClose}
+            color="primary"
+            autoFocus
+            classes={{ root: classes.content }}
+          >
+            확인
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }
