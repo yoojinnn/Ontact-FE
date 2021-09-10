@@ -1,18 +1,10 @@
 import React, { useState } from 'react';
-import {
-  TextField,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
 import { S } from './style';
 import bg from '../../images/background1.png';
-import WarningRoundedIcon from '@material-ui/icons/WarningRounded';
+import WarningDialog from '../WarningDialog';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,15 +16,6 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
   },
-  paper: { minWidth: '500px' },
-  title: {
-    fontSize: 30,
-    fontWeight: 'bold',
-  },
-  content: {
-    fontFamily: 'NanumBarunPenR',
-    fontSize: 20,
-  },
 }));
 
 function Search({ changeSearch }) {
@@ -42,21 +25,14 @@ function Search({ changeSearch }) {
   const [userId, setUserId] = useState('');
   const [open, setOpen] = useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const handleClickOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const changeHandler = ({ target }) => setUserId(target.value);
 
   const clickHandler = async () => {
     localStorage.setItem('userId', userId);
     if (userId === '') {
-      handleClickOpen();
-    } else if (userId === null) {
       handleClickOpen();
     } else {
       changeSearch();
@@ -110,37 +86,7 @@ function Search({ changeSearch }) {
           </Button>
         </form>
       </div>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-        classes={{ paper: classes.paper }}
-      >
-        <DialogTitle
-          id="alert-dialog-title"
-          disableTypography="true"
-          classes={{ root: classes.title }}
-        >
-          <WarningRoundedIcon style={{ fontSize: 40 }} />
-          {'경고'}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description" classes={{ root: classes.content }}>
-            아이디를 입력해주세요
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button
-            onClick={handleClose}
-            color="primary"
-            autoFocus
-            classes={{ root: classes.content }}
-          >
-            확인
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <WarningDialog open={open} handleClose={handleClose} text="아이디를 입력해주세요" />
     </div>
   );
 }

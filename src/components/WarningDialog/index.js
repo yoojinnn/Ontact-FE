@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Button,
   Dialog,
@@ -7,8 +7,8 @@ import {
   DialogContentText,
   DialogTitle,
 } from '@material-ui/core';
-import WarningRoundedIcon from '@material-ui/icons/WarningRounded';
 import { makeStyles } from '@material-ui/core/styles';
+import WarningRoundedIcon from '@material-ui/icons/WarningRounded';
 
 const useStyles = makeStyles((theme) => ({
   paper: { minWidth: '500px' },
@@ -22,17 +22,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function WarningDialog() {
+function WarningDialog({ open, handleClose, text }) {
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   return (
     <Dialog
@@ -52,7 +43,7 @@ function WarningDialog() {
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description" classes={{ root: classes.content }}>
-          아이디를 입력해주세요
+          {text}
         </DialogContentText>
       </DialogContent>
       <DialogActions>

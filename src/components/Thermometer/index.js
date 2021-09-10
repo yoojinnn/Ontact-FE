@@ -4,22 +4,37 @@ import { S } from './style';
 import { deduplicateArray, removeOneWords } from '../../util/words';
 import { getWords, getDatas, getTem } from '../../api';
 import LoadingSpinner from '../LoadingSpinner';
+import WarningDialog from '../WarningDialog';
+import { useHistory } from 'react-router-dom';
 
 const options = {
-  colors: ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b'],
+  colors: [
+    '#862A5C',
+    '#F4A548',
+    '#862A5C',
+    '#3F51B5',
+    '#3F51B5',
+    '#E7A85E',
+    '#476777',
+    '#7398A1',
+    '#98BAC3',
+  ],
   enableTooltip: true,
   deterministic: false,
-  fontFamily: 'sans-serif',
+  fontFamily: 'NanumBarunpenR',
   fontSizes: [15, 80],
+  fontStyle: 'normal',
+  fontWeight: 'normal',
   padding: 1,
   rotations: 3,
-  rotationAngles: [0, 90],
+  rotationAngles: [0, 0],
   scale: 'sqrt',
   spiral: 'archimedean',
   transitionDuration: 500,
 };
 
 function Thermometer() {
+  const history = useHistory();
   const [words, setWords] = useState([]);
   const [avg, setAvg] = useState([]);
   const [tem, setTem] = useState([]);
@@ -27,6 +42,8 @@ function Thermometer() {
   useEffect(() => {
     const fetchWordsData = async () => {
       const response = await getWords(localStorage.getItem('userId'));
+      console.log();
+      // 조건 처리 handleClickOpen();
       setWords(removeOneWords(deduplicateArray(response.data.data)));
     };
 
@@ -43,6 +60,14 @@ function Thermometer() {
     fetchAvgData();
     fetchTemData();
   }, []);
+
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => setOpen(true);
+  const handleClose = () => {
+    setOpen(false);
+    history.push('/');
+  };
 
   return (
     <S.AppHeader>
@@ -107,6 +132,7 @@ function Thermometer() {
           </div>
         </div>
       )}
+      <WarningDialog open={open} handleClose={handleClose} text="존재하지 않는 아이디입니다." />
     </S.AppHeader>
   );
 }
