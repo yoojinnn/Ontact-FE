@@ -42,7 +42,7 @@ function Thermometer() {
   useEffect(() => {
     const fetchWordsData = async () => {
       const response = await getWords(localStorage.getItem('userId'));
-      console.log();
+      //console.log();
       // 조건 처리 handleClickOpen();
       setWords(removeOneWords(deduplicateArray(response.data.data)));
     };
@@ -63,7 +63,7 @@ function Thermometer() {
 
   const [open, setOpen] = useState(false);
 
-  const handleClickOpen = () => setOpen(true);
+  // const handleClickOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
     history.push('/');
