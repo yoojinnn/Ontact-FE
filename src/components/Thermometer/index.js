@@ -33,7 +33,7 @@ const options = {
   transitionDuration: 500,
 };
 
-function Thermometer() {
+function Thermometer({ changeSearch }) {
   const history = useHistory();
   const [words, setWords] = useState([]);
   const [avg, setAvg] = useState([]);
@@ -42,19 +42,18 @@ function Thermometer() {
   useEffect(() => {
     const fetchWordsData = async () => {
       const response = await getWords(localStorage.getItem('userId'));
-      //console.log();
-      // 조건 처리 handleClickOpen();
-      setWords(removeOneWords(deduplicateArray(response.data.data)));
+      if (response) setWords(removeOneWords(deduplicateArray(response.data.data)));
+      else handleClickOpen();
     };
 
     const fetchAvgData = async () => {
       const response = await getDatas(localStorage.getItem('userId'));
-      setAvg(response.data.avg);
+      if (response) setAvg(response.data.avg);
     };
 
     const fetchTemData = async () => {
       const response = await getTem(localStorage.getItem('userId'));
-      setTem(response.data);
+      if (response) setTem(response.data);
     };
     fetchWordsData();
     fetchAvgData();
@@ -63,9 +62,10 @@ function Thermometer() {
 
   const [open, setOpen] = useState(false);
 
-  // const handleClickOpen = () => setOpen(true);
+  const handleClickOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
+    changeSearch();
     history.push('/');
   };
 

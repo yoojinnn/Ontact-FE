@@ -10,9 +10,7 @@ import Search from './components/Search';
 function App() {
   const [search, setSearch] = useState(false);
 
-  const changeSearch = () => {
-    setSearch(true);
-  };
+  const changeSearch = () => setSearch(!search);
 
   return (
     <BrowserRouter>
@@ -20,7 +18,7 @@ function App() {
         <Header search={search} />
         <Switch>
           <Route path="/" exact render={() => <Search changeSearch={changeSearch} />} />
-          <Route path="/thermometer" component={Thermometer} />
+          <Route path="/thermometer" render={() => <Thermometer changeSearch={changeSearch} />} />
           <Route path="/temperature-variant" component={TemperatureVariant} />
           <Route path="/calendar" component={Calendar} />
           <Route path="/user-info" component={UserInfo} />

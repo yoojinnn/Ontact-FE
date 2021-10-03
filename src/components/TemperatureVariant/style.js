@@ -16,4 +16,8 @@ export const S = {
     text-align: center;
     height: 400px;
   `,
+
+  Msg: styled.li`
+    background-color: aliceblue;
+  `,
 };

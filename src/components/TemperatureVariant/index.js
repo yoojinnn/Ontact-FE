@@ -7,6 +7,10 @@ import { makeData } from '../../util/makeData';
 
 function TemperatureVariant() {
   const [datas, setDatas] = useState(null);
+  const [msg1, setMsg1] = useState('');
+  const [msg2, setMsg2] = useState('');
+  const [msg3, setMsg3] = useState('');
+  const [msg, setMsg] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,6 +21,10 @@ function TemperatureVariant() {
         data: makeData(response.data.m_avg),
       };
       setDatas(data);
+      setMsg1(response.data.msg1);
+      setMsg2(response.data.msg2);
+      setMsg3(response.data.msg3);
+      setMsg(response.data.msg[0]);
     };
     fetchData();
   }, []);
@@ -88,6 +96,10 @@ function TemperatureVariant() {
           />
         )}
       </S.Header>
+      {msg1 !== '' && <S.Msg>{msg1}</S.Msg>}
+      {msg2 !== '' && <S.Msg>{msg2}</S.Msg>}
+      {msg3 !== '' && <S.Msg>{msg3}</S.Msg>}
+      {(msg1 !== '' || msg2 !== '' || msg3 !== '') && <S.Msg>{msg}</S.Msg>}
     </S.AppHeader>
   );
 }

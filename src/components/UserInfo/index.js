@@ -25,6 +25,7 @@ function UserInfo() {
     // setUser(userInfo);
     const fetchData = async () => {
       const response = await getUserInfo(localStorage.getItem('userId'));
+      console.log(user.twitter_id);
       setUser(response.data.data[0]);
     };
     fetchData();
