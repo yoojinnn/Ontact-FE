@@ -40,7 +40,7 @@ function UserInfo() {
           textAlign: '-webkit-center',
           padding: '30px',
           margin: '10px',
-          boxShadow: '0 1px 5px rgba(0,0,0,0.5)',
+          // boxShadow: '0 1px 5px rgba(0,0,0,0.5)',
         }}
       >
         <Avatar

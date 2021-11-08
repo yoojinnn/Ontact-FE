@@ -15,10 +15,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-} */
-
 .fc-event-title-container {
   font-size: 20px;
   text-align: center;
@@ -38,7 +34,7 @@ body {
   position: absolute;
   width: 32px;
   height: 32px;
-  background: #fdd;
+  background: #faa;
   animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 .lds-heart div:after,
@@ -48,7 +44,7 @@ body {
   display: block;
   width: 32px;
   height: 32px;
-  background: #fdd;
+  background: #faa;
 }
 .lds-heart div:before {
   left: -24px;
@@ -77,4 +73,38 @@ body {
   100% {
     transform: scale(0.9);
   }
+}
+
+.fc-col-header-cell-cushion {
+  color: #666;
+}
+
+.fc-daygrid-day-number {
+  color: #666;
+}
+
+/* .fc-h-event .fc-event-title {
+  color: #666;
+} */
+/* .fc-direction-ltr .fc-button-group > .fc-button:not(:last-child) {
+  background-color: #666;
+  border-color: #666;
+}
+.fc-direction-ltr .fc-button-group > .fc-button:not(:first-child) {
+  background-color: #666;
+  border-color: #666;
+} */
+.fc-button .fc-button-inner:hover {
+  background-color: red;
+  color: #fff;
+}
+
+.fc-button.fc-state-active .fc-button-inner {
+  background-color: green;
+  color: #fff;
+}
+
+.fc-button .fc-button-inner {
+  background-color: #000;
+  color: #fff;
 }

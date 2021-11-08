@@ -1,20 +1,28 @@
 import React from 'react';
 import { S } from './style';
 import { Navbar, Nav } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
 
 function Header({ search }) {
   return (
     <Navbar
-      bg="light"
       variant="light"
-      style={{ justifyContent: 'space-between', paddingRight: '3rem' }}
+      style={{
+        justifyContent: 'space-between',
+        paddingRight: '2rem',
+        paddingBottom: 0,
+        paddingTop: 0,
+        backgroundColor: '#666',
+        zIndex: 1,
+        // borderBottom: '1px solid #eee',
+        // boxShadow: 'rgb(0 0 0 / 5%) 0px 4px 8px 0px, rgb(0 0 0 / 5%) 0px 6px 20px 0px',
+      }}
     >
-      <S.NavLink to="/">
+      <NavLink to="/">
         <Navbar.Brand href="/home" style={{ marginLeft: '30px' }}>
-          {/* /<img src={logo} width="170" height="55" alt="Logo" /> */}
           <S.h1>Ontact</S.h1>
         </Navbar.Brand>
-      </S.NavLink>
+      </NavLink>
       <Nav>
         {!search ? (
           <S.NavLink exact to="/">

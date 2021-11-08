@@ -70,70 +70,75 @@ function Thermometer({ changeSearch }) {
   };
 
   return (
-    <S.AppHeader>
-      <S.h1>온도계</S.h1>
+    <>
       {words.length === 0 || avg.length === 0 || tem.length === 0 ? (
-        <S.Spinner>
-          <LoadingSpinner></LoadingSpinner>
-          <div style={{ textAlign: 'center', fontSize: '20px' }}>분석 중..</div>
-        </S.Spinner>
+        <S.SpinnerWrapper>
+          <S.Spinner>
+            <LoadingSpinner />
+            <div style={{ textAlign: 'center', fontSize: '20px', color: '#666' }}>분석 중</div>
+          </S.Spinner>
+        </S.SpinnerWrapper>
       ) : (
-        <div>
-          <S.Information>
-            <S.Analyze>
-              최근 게시글 {avg.total_sen}개의 평균온도는{' '}
-              <S.Temperature>{Math.round(avg.title__avg * 100) / 100}&deg;C</S.Temperature> 입니다.
-            </S.Analyze>
-            <S.Result>총 {avg.total_sen}개의 글 분석 결과</S.Result>
-          </S.Information>
+        <S.AppHeader>
+          <S.h1>온도계</S.h1>
+          <div>
+            <S.Information>
+              <S.Analyze>
+                최근 게시글 {avg.total_sen}개의 평균온도는{' '}
+                <S.Temperature>{Math.round(avg.title__avg * 100) / 100}&deg;C</S.Temperature>{' '}
+                입니다.
+              </S.Analyze>
+              <S.Result>총 {avg.total_sen}개의 글 분석 결과</S.Result>
+            </S.Information>
 
-          <S.Table>
-            <table>
-              <tbody>
-                <S.Degree>
-                  <S.Warm>溫온</S.Warm>
-                  <S.Mid>中중</S.Mid>
-                  <S.Cold>冷냉</S.Cold>
-                </S.Degree>
-                <tr style={{ fontSize: '20px' }}>
-                  <td>
-                    <S.textarea
-                      cols="30"
-                      rows="10"
-                      fontSize="20px"
-                      value={tem.warm && tem.warm.join(', ')}
-                      readOnly
-                    ></S.textarea>
-                  </td>
-                  <S.MidTextArea>
-                    <S.textarea
-                      cols="30"
-                      rows="10"
-                      value={tem.normal && tem.normal.join(', ')}
-                      readOnly
-                    ></S.textarea>
-                  </S.MidTextArea>
-                  <td>
-                    <S.textarea
-                      cols="30"
-                      rows="10"
-                      value={tem.cold && tem.cold.join(', ')}
-                      readOnly
-                    ></S.textarea>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </S.Table>
+            <S.Table>
+              <table>
+                <tbody>
+                  <S.Degree>
+                    <S.Warm>溫온</S.Warm>
+                    <S.Mid>中중</S.Mid>
+                    <S.Cold>冷냉</S.Cold>
+                  </S.Degree>
+                  <tr style={{ fontSize: '20px' }}>
+                    <td>
+                      <S.textarea
+                        cols="30"
+                        rows="10"
+                        fontSize="20px"
+                        value={tem.warm && tem.warm.join(', ')}
+                        readOnly
+                      ></S.textarea>
+                    </td>
+                    <S.MidTextArea>
+                      <S.textarea
+                        cols="30"
+                        rows="10"
+                        value={tem.normal && tem.normal.join(', ')}
+                        readOnly
+                      ></S.textarea>
+                    </S.MidTextArea>
+                    <td>
+                      <S.textarea
+                        cols="30"
+                        rows="10"
+                        value={tem.cold && tem.cold.join(', ')}
+                        readOnly
+                      ></S.textarea>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </S.Table>
 
-          <div style={{ height: 600 }}>
-            <S.h1>나의 단어</S.h1>
-            <ReactWordcloud options={options} words={words} />
+            <div style={{ height: 600 }}>
+              <S.h1>나의 단어</S.h1>
+              <ReactWordcloud options={options} words={words} />
+            </div>
           </div>
-        </div>
+        </S.AppHeader>
       )}
       <WarningDialog open={open} handleClose={handleClose} text="존재하지 않는 아이디입니다." />
-    </S.AppHeader>
+    </>
   );
 }
 

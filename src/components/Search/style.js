@@ -4,13 +4,23 @@ export const S = {
   Header: styled.div`
     text-align: center;
   `,
-
-  h1: styled.div`
-    text-align: center;
-    font-size: 90px;
-    bottom: 100px;
-    color: #ffffff;
-    text-shadow: 0 0 5px #91a4cc, 0 0 7px #91a4cc;
-    font-weight: bold;
+  SearchButtom: styled.button`
+    outline: none;
+    border: none;
+    background: transparent;
+  `,
+  SearchInput: styled.input`
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+  `,
+  SearchWrapper: styled.div`
+    border: 2px solid #666;
+    border-radius: 30px;
+    padding: 10px 20px;
+    width: 25rem;
+    display: flex;
+    justify-content: space-between;
   `,
 };

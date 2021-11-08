@@ -2,12 +2,13 @@ import styled from 'styled-components';
 
 export const S = {
   AppHeader: styled.div`
-    margin: 30px;
+    padding: 30px;
+    background: #ce11260d;
   `,
 
   h1: styled.div`
     font-size: 50px;
-    color: #718ac0;
+    color: #666;
     font-weight: bold;
   `,
 
@@ -52,7 +53,7 @@ export const S = {
 
   Cold: styled.th`
     font-size: 30px;
-    color: #718ac0;
+    color: #8db3e2;
   `,
 
   MidTextArea: styled.td`
@@ -65,9 +66,15 @@ export const S = {
     border: 3px solid darkslategrey;
   `,
   Spinner: styled.div`
-    position: absolute;
+    margin: auto;
+    /* position: absolute;
     top: 50%;
-    right: 50%;
+    right: 50%; */
     /* transform: translate(-50%, -50%); */
+  `,
+  SpinnerWrapper: styled.div`
+    display: flex;
+    height: calc(100vh - 61.83px);
+    background: #ce11260d;
   `,
 };

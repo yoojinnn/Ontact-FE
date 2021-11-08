@@ -6,11 +6,12 @@ import styled from 'styled-components';
 import { getDates } from '../../api';
 
 export const StyleWrapper = styled.div`
-  margin: 30px;
+  padding: 30px;
+  background: #ce11260d;
 `;
 export const HeaderWrapper = styled.div`
   font-size: 50px;
-  color: #718ac0;
+  color: #666;
   font-weight: bold;
 `;
 
@@ -34,7 +35,13 @@ function Calendar() {
   return (
     <StyleWrapper>
       <HeaderWrapper>온도 캘린더</HeaderWrapper>
-      <FullCalendar defaultView="dayGridMonth" plugins={[dayGridPlugin]} events={dates} />
+      <FullCalendar
+        defaultView="dayGridMonth"
+        plugins={[dayGridPlugin]}
+        events={dates}
+        eventColor="#8891A1"
+        themeSystem="standard"
+      />
     </StyleWrapper>
   );
 }

@@ -17,7 +17,7 @@ function App() {
       <div className="App">
         <Header search={search} />
         <Switch>
-          <Route path="/" exact render={() => <Search changeSearch={changeSearch} />} />
+          <Route value="" path="/" exact render={() => <Search changeSearch={changeSearch} />} />
           <Route path="/thermometer" render={() => <Thermometer changeSearch={changeSearch} />} />
           <Route path="/temperature-variant" component={TemperatureVariant} />
           <Route path="/calendar" component={Calendar} />

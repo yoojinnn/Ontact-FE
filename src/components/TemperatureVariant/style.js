@@ -2,12 +2,16 @@ import styled from 'styled-components';
 
 export const S = {
   AppHeader: styled.div`
-    margin: 30px;
+    padding: 30px;
+    background: #ce11260d;
+    height: 100%;
+    position: absolute;
+    width: 100%;
   `,
 
   h: styled.div`
     font-size: 50px;
-    color: #718ac0;
+    color: #666;
     font-weight: bold;
   `,
 
